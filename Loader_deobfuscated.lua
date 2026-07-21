@@ -1,18 +1,13 @@
 --[[
     CloudWare - Key System Loader
     ==========================================================
-    مصدر مُعاد بناؤه بالكامل من Loader.lua المُعتَّم بـ WeAreDevs Obfuscator v1.0.0
-    طريقة الاستخراج: تنفيذ مُراقَب داخل Lua 5.1 sandbox + debug.getlocal
-    كل القيم (الأحجام، الألوان، النصوص، الروابط، المفاتيح) مأخوذة حرفياً من التتبّع.
-
-    ملاحظة: نص "Tamper Detected!" موجود داخل جدول نصوص المُعتِّم نفسه
-            (فحص تلاعب خاص بالـ VM) وليس جزءاً من منطق السكربت الأصلي.
+    المفتاح الدائم: SOUTH-BX-TRUST
+    الروابط: مستودع nadmksa123456-lgtm/My-Scripts
 ==============================================================]]
 
 --========================= الخدمات =========================
 local Players           = game:GetService("Players")
 local CoreGui           = game:GetService("CoreGui")
-local TweenService      = game:GetService("TweenService")
 local UserInputService  = game:GetService("UserInputService")
 
 local LocalPlayer = Players.LocalPlayer
@@ -33,19 +28,15 @@ local COLORS = {
 
 local DISCORD_LINK = "https://dsc.gg/cloud-ware"
 
-local SCRIPT_LIMITED = "https://raw.githubusercontent.com/suborbann/CWSB-FullVersion/refs/heads/main/obfuscated_script-1782489174868.lua"
-local SCRIPT_FULL    = "https://raw.githubusercontent.com/suborbann/CWSB-FullVersion/refs/heads/main/CW%20SB%20Full%20(bannable).txt"
+-- 🔗 روابط السكربتات من مستودعك
+local SCRIPT_LIMITED = "https://raw.githubusercontent.com/nadmksa123456-lgtm/My-Scripts/main/obfuscated_script-1782489174868.deobf.lua"
+local SCRIPT_FULL    = "https://raw.githubusercontent.com/nadmksa123456-lgtm/My-Scripts/main/CW%20SB%20Full%20(bannable).deobf.lua"
 
--- المفاتيح: تدور أسبوعياً حسب رقم الأسبوع % 3
-local KEYS = {
-    [0] = "X9K2-M7QP-4ZTW-8RNC",
-    [1] = "R8TN-5WYC-3MZG-1KQH",
-    [2] = "Q3WB-8KZF-5TNP-4YRC",
-}
+-- 🔑 مفتاح دائم
+local PERMANENT_KEY = "SOUTH-BX-TRUST"
 
 local function getCurrentKey()
-    local week = tonumber(os.date("%W"))
-    return KEYS[week % 3]
+    return PERMANENT_KEY
 end
 
 --========================= أدوات مساعدة =========================
@@ -56,7 +47,6 @@ local function corner(parent, radius)
     return c
 end
 
--- سحب النافذة بالماوس (نمط Roblox القياسي)
 local function makeDraggable(window, handle)
     local dragging, dragInput, dragStart, startPos
 
@@ -134,12 +124,10 @@ keyClose.TextSize           = 16
 keyClose.Parent             = keyWindow
 corner(keyClose, 6)
 
--- [Handler #1]
 keyClose.MouseButton1Click:Connect(function()
     screenGui:Destroy()
 end)
 
--- [Handlers #2..#4]
 makeDraggable(keyWindow, keyTitle)
 
 local keyBox = Instance.new("TextBox")
@@ -223,12 +211,10 @@ selClose.TextSize         = 16
 selClose.Parent           = selectWindow
 corner(selClose, 6)
 
--- [Handler #5]
 selClose.MouseButton1Click:Connect(function()
     screenGui:Destroy()
 end)
 
--- [Handlers #6..#8]
 makeDraggable(selectWindow, selTitle)
 
 local limitedBtn = Instance.new("TextButton")
@@ -305,7 +291,6 @@ corner(cancelBtn, 6)
 
 --========================= المنطق =========================
 
--- [Handler #9] نسخ رابط الديسكورد
 getKeyBtn.MouseButton1Click:Connect(function()
     setclipboard(DISCORD_LINK)
     statusLabel.TextColor3 = COLORS.Success
@@ -314,7 +299,6 @@ getKeyBtn.MouseButton1Click:Connect(function()
     statusLabel.Text = ""
 end)
 
--- [Handler #10] فحص المفتاح  <-- التحقق محلي 100%، لا يوجد أي طلب شبكة
 checkBtn.MouseButton1Click:Connect(function()
     if keyBox.Text == getCurrentKey() then
         statusLabel.TextColor3 = COLORS.Success
@@ -328,23 +312,19 @@ checkBtn.MouseButton1Click:Connect(function()
     end
 end)
 
--- [Handler #11] النسخة المحدودة
 limitedBtn.MouseButton1Click:Connect(function()
     screenGui:Destroy()
     loadstring(game:HttpGet(SCRIPT_LIMITED))()
 end)
 
--- [Handler #12] إظهار نافذة التأكيد
 fullBtn.MouseButton1Click:Connect(function()
     overlay.Visible = true
 end)
 
--- [Handler #13] إلغاء
 cancelBtn.MouseButton1Click:Connect(function()
     overlay.Visible = false
 end)
 
--- [Handler #14] النسخة الكاملة (خطر حظر عالٍ)
 yesBtn.MouseButton1Click:Connect(function()
     screenGui:Destroy()
     loadstring(game:HttpGet(SCRIPT_FULL))()
