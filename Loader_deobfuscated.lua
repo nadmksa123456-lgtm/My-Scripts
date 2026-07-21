@@ -1,5 +1,5 @@
 --[[
-    CloudWare - Key System Loader
+    TRUST MENU - Key System Loader
     ==========================================================
     المفتاح الدائم: SOUTH-BX-TRUST
     الروابط: مستودع nadmksa123456-lgtm/My-Scripts
@@ -85,7 +85,7 @@ end
 
 --========================= ScreenGui =========================
 local screenGui = Instance.new("ScreenGui")
-screenGui.Name          = "CloudWare_KeySystem"
+screenGui.Name          = "TRUST_MENU_KeySystem"
 screenGui.ResetOnSpawn  = false
 screenGui.Parent        = CoreGui
 
@@ -105,7 +105,7 @@ keyTitle.Name                   = "Title"
 keyTitle.Size                   = UDim2.new(0, 200, 0, 45)
 keyTitle.Position               = UDim2.new(0, 20, 0, 5)
 keyTitle.BackgroundTransparency = 1
-keyTitle.Text                   = "CloudWare"
+keyTitle.Text                   = "TRUST MENU"
 keyTitle.TextColor3             = COLORS.Text
 keyTitle.Font                   = Enum.Font.GothamBold
 keyTitle.TextSize               = 20
@@ -192,7 +192,7 @@ selTitle.Name                   = "Title"
 selTitle.Size                   = UDim2.new(0, 200, 0, 45)
 selTitle.Position               = UDim2.new(0, 20, 0, 5)
 selTitle.BackgroundTransparency = 1
-selTitle.Text                   = "CloudWare"
+selTitle.Text                   = "TRUST MENU"
 selTitle.TextColor3             = COLORS.Text
 selTitle.Font                   = Enum.Font.GothamBold
 selTitle.TextSize               = 20
